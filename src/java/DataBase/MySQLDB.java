@@ -19,7 +19,7 @@ import java.sql.Statement;
 public class MySQLDB {
     
     private Connection connection = null;
-    private Statement st = null;
+    private Statement statement = null;
     
     public MySQLDB() {
         super();
@@ -27,33 +27,51 @@ public class MySQLDB {
     
     public void conectar() throws ClassNotFoundException, SQLException{
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/prueba","root", "la_clave");       
+            setConnection(DriverManager.getConnection("jdbc:mysql://localhost/prueba","root", "la_clave"));       
     }
+    
     public ResultSet consultar(String query) throws SQLException{
         ResultSet rs;
-        this.st = this.connection.createStatement();
-        rs = this.st.executeQuery(query);
+        this.setStatement(this.getConnection().createStatement());
+        rs = this.getStatement().executeQuery(query);
         this.close();
         return rs;
     }
+    
     public void close() throws SQLException{
-        this.connection.close();
+        this.getConnection().close();
     }
 
+    /**
+     * @return the connection
+     */
     public Connection getConnection() {
         return connection;
     }
 
+    /**
+     * @param connection the connection to set
+     */
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
 
-    public Statement getSt() {
-        return st;
+    /**
+     * @return the statement
+     */
+    public Statement getStatement() {
+        return statement;
     }
 
-    public void setSt(Statement st) {
-        this.st = st;
+    /**
+     * @param statement the statement to set
+     */
+    public void setStatement(Statement statement) {
+        this.statement = statement;
     }
+
+   
+
+  
      
 }
