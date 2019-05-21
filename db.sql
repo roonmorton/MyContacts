@@ -1,0 +1,16 @@
+-- Usuarios
+    -- nombres
+    -- apellidos
+    -- usuario
+    -- contraseña
+    -- imagen
+-- Contactos
+    -- nombres
+    -- apellidos
+    -- telefono
+    -- correo
+    -- direccion
+    -- imagen
+    -- usuario almacena
+-- Imagenes
+    -- path
